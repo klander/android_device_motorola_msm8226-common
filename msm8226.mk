@@ -79,8 +79,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio_effects.conf:system/vendor/etc/audio_effects.conf \
     $(LOCAL_PATH)/configs/audio_platform_info.xml:system/etc/audio_platform_info.xml \
-    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf \
-    $(LOCAL_PATH)/configs/mixer_paths.xml:system/etc/mixer_paths.xml
+    $(LOCAL_PATH)/configs/audio_policy.conf:system/etc/audio_policy.conf
+
+ifneq ($(filter falcon peregrine,$(TARGET_DEVICE)),)
+
+PRODUCT_COPY_FILES += \
+     $(LOCAL_PATH)/configs/mixer_paths.xml:system/etc/mixer_paths.xml
+ 
+endif
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -223,6 +229,10 @@ PRODUCT_PACKAGES += \
     libQWiFiSoftApCfg \
     wcnss_service
 
+ifneq ($(filter falcon peregrine,$(TARGET_DEVICE)),)
+
 PRODUCT_COPY_FILES += \
     kernel/motorola/msm8226/drivers/staging/prima/firmware_bin/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
     kernel/motorola/msm8226/drivers/staging/prima/firmware_bin/WCNSS_qcom_cfg.ini:system/etc/firmware/wlan/prima/WCNSS_qcom_cfg.ini
+
+endif
