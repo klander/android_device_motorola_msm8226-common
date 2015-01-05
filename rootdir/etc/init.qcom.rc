@@ -86,6 +86,10 @@ on init
     chown root diag /sys/kernel/dropbox/event
     chown root diag /sys/kernel/dropbox/data
 
+    # Titan sensors
+    chown root input /sys/class/sig_sensor/g_sensor/en_sig_motion
+    chown root input /sys/class/srot_sensor/g_sensor/en_disp_rotation
+
 on fs
     mount_all fstab.qcom
     write /sys/kernel/boot_adsp/boot 1
@@ -699,6 +703,12 @@ service fuse_sdcard1 /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/sdcard1
 service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk /storage/usbdisk
     class late_start
     disabled
+
+# Titan sensor service
+service sensord /system/bin/sensord
+    user input
+    group input
+    class main
 
 # SSR
 on property:persist.sys.ssr.restart_level=*
