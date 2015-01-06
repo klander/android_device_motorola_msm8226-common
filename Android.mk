@@ -64,10 +64,12 @@ $(FIRMWARE_MBA_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_MBA_SYMLINKS)
 
 FIRMWARE_MODEM_IMAGES := \
-    modem.b00 modem.b01 modem.b02 modem.b03 modem.b05 modem.b08 \
-    modem.b11 modem.b13 modem.b15 modem.b16 modem.b17 modem.b18 \
-    modem.b19 modem.b20 modem.b21 modem.b22 modem.b25 modem.b26 \
-    modem.b27 modem.mdt
+    mba.b00 mba.mdt \
+    modem.b00 modem.b01 modem.b02 modem.b03 modem.b04 modem.b05 \
+    modem.b08 modem.b11 modem.b13 modem.b15 modem.b16 modem.b17 \
+    modem.b18 modem.b19 modem.b20 modem.b21 modem.b22 \
+    modem.b25 modem.b26 modem.b27 \
+    modem.mdt
 
 FIRMWARE_MODEM_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(FIRMWARE_MODEM_IMAGES)))
 $(FIRMWARE_MODEM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
@@ -78,9 +80,23 @@ $(FIRMWARE_MODEM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 
 ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_MODEM_SYMLINKS)
 
+PROV_MODEM_IMAGES := \
+    prov.b00 prov.b01 prov.b02 prov.b03 prov.mdt
+
+PROV_MODEM_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(PROV_MODEM_IMAGES)))
+$(PROV_MODEM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "Prov Firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(PROV_MODEM_SYMLINKS)
+
 FIRMWARE_WCNSS_IMAGES := \
+    cmnlib.b00 cmnlib.b01 cmnlib.b02 cmnlib.b03 cmnlib.mdt \
     wcnss.b00 wcnss.b01 wcnss.b02 wcnss.b04 \
-    wcnss.b06 wcnss.b07 wcnss.b08 wcnss.mdt
+    wcnss.b06 wcnss.b07 wcnss.b08 wcnss.b09 \
+    wcnss.mdt
 
 FIRMWARE_WCNSS_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(FIRMWARE_WCNSS_IMAGES)))
 $(FIRMWARE_WCNSS_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
