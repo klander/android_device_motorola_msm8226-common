@@ -92,11 +92,6 @@ endif
 PRODUCT_PACKAGES += \
     libxml2
 
-# Charger
-PRODUCT_PACKAGES += \
-    charger \
-    charger_res_images
-
 # CRDA
 PRODUCT_PACKAGES += \
     crda \
