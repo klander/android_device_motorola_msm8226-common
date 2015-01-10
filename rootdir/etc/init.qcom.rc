@@ -704,12 +704,6 @@ service fuse_usbdisk /system/bin/sdcard -u 1023 -g 1023 -d /mnt/media_rw/usbdisk
     class late_start
     disabled
 
-# Titan sensor service
-service sensord /system/bin/sensord
-    user input
-    group input
-    class main
-
 # SSR
 on property:persist.sys.ssr.restart_level=*
     exec /system/bin/sh /init.qcom.ssr.sh ${persist.sys.ssr.restart_level}
