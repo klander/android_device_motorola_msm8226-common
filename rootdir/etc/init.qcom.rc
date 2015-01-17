@@ -89,7 +89,6 @@ on init
     # Titan sensors
     chown root input /sys/class/sig_sensor/g_sensor/en_sig_motion
     chown root input /sys/class/srot_sensor/g_sensor/en_disp_rotation
-    write /sys/devices/virtual/bst/ACC/enable 1
 
 on fs
     mount_all fstab.qcom
