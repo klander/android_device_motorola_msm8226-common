@@ -506,8 +506,8 @@ service akmd8963 /system/bin/akmd8963
 
 # Titan sensor service
 service sensord /system/bin/sensord
-    user system
-    group system
+    user root
+    group root
     disabled
 
 service atvc_core /system/bin/dbvc_atvc_property_set
