@@ -126,6 +126,9 @@ on post-fs-data
     mkdir /tombstones/modem 0771 system system
     mkdir /data/misc/sensor 0771 system system
 
+    # start Titan sensor daemon
+    start sensord
+
     # we will remap this as /mnt/sdcard with the sdcard fuse tool
     mkdir /data/media 0770 media_rw media_rw
     chown media_rw media_rw /data/media
@@ -500,6 +503,12 @@ service akmd8963 /system/bin/akmd8963
     class main
     user compass
     group compass misc input
+
+# Titan sensor service
+service sensord /system/bin/sensord
+    user system
+    group system
+    disabled
 
 service atvc_core /system/bin/dbvc_atvc_property_set
     class core
