@@ -502,10 +502,10 @@ service akmd8963 /system/bin/akmd8963
 
 # Titan sensor service
 service sensord /system/bin/sensord
-   user system
-   group compass misc input
-   class core
-   oneshot
+    user system
+    group compass misc input
+    class core
+    oneshot
 
 service atvc_core /system/bin/dbvc_atvc_property_set
     class core
